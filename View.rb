@@ -1,12 +1,11 @@
 class View
 
 	def print(list)
-		# puts
-		# puts "-" * 42
-		# puts "Bienvenido a tu lista de cosas por hacer"
-		# puts "-" * 42
-		# puts "Estas son las cosas que tienes por hacer:"
-		# puts
+		puts "-" * 42
+		puts "Bienvenido a tu lista de cosas por hacer"
+		puts "-" * 42
+		puts "Estas son las cosas que tienes por hacer:"
+		puts
 		index(list.length, list)
 	end
 
@@ -19,7 +18,11 @@ class View
 	private
 		def index(n, list)
 			for i in 1..n
-				puts "#{i}. [ ] #{list[i - 1]}"
+				if list[i - 1][-1] == " "
+					puts "#{i}. [X] #{list[i - 1]}"
+				else
+					puts "#{i}. [ ] #{list[i - 1]}"
+				end
 			end
 			puts
 		end

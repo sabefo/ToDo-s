@@ -20,9 +20,12 @@ class Controller
 			@view.print(@model.list)
 		when "delete"
 			number = argument[1]
-			@model.delete_item(number.to_i)
-			@view.print(@model.list)			
+			@model.delete_item(number.to_i - 1)
+			@view.print(@model.list)
 		when "complete"
+			number = argument[1]
+			@model.update_item(number.to_i - 1, @model.list[number.to_i - 1])
+			@view.print(@model.list)			
 		else
 			@view.to_s(@model.list)
 		end

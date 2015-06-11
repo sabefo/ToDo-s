@@ -8,21 +8,17 @@ class Model
 	end
 
 	def add_item(item)
-		@list << item
+		@list << item.capitalize
 		update_csv
 	end
 
 	def delete_item(item)
-		p "Estoy recibiendo #{item}"
-		p "la lista es: #{@list}"
 		@list.delete_at(item)
-		p "la lista es: #{@list}"
-
 		update_csv
 	end
 
 	def update_item(index, item)
-		@list[index] = item
+		@list[index] = item + " "
 		update_csv
 	end
 
@@ -31,14 +27,8 @@ class Model
 	end
 
 	def read_csv
-		p "Estamos leyendo"
 		@list = CSV.read("To Do's.csv", "r")
-		P "largo de la lista: #{@list.length}"
-		for i in 0...@list.length
-			p "Elemento #{i} de la @list: #{@list[i]}"
-			@list << @list[i]
-		end
-		p "Estamos leyendo el archivo, esto es lo que tenemos: #{@list}"
+		@list.flatten!
 	end
 
 	def update_csv
