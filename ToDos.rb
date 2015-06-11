@@ -1,3 +1,4 @@
+require "csv"
 class ToDos
 
 	attr_accessor :list
@@ -23,13 +24,42 @@ class ToDos
 			puts item
 		}
 	end
+
+	def create_csv
+		CSV.open("To Do's.csv","w")
+	end
+
+	def read_csv
+		@list = CSV.read("To Do's.csv", "r")
+	end
+
+	# def modify_csv
+	# 	CSV.open("To Do's.csv","w") do |csv|
+	# 		@list.each{  ||
+
+	# 		}
+	# 			csv << ["sa","cancion"]
+	# 	end		
+	# end
+
+	def manage_file
+		begin
+			read_csv
+		rescue
+			create_csv
+		end
+	end
 end
+
 
 
 #===================================================
 #AQUI VA LA VISTA
 
 list = ToDos.new
+#list.create_csv
+#list.read_csv
+list.manage_file
 puts "-" * 42
 puts "Bienvenido a tu lista de cosas por hacer"
 puts "-" * 42
